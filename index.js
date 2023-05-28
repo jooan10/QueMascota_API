@@ -4,8 +4,7 @@ import "./database/connectdb.js";
 import express from "express";
 import authRouter from './routers/auth.route.js';
 
-
-let app = express();
+const app = express();
 
 app.use(express.json());
 
