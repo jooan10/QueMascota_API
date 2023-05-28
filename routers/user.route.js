@@ -1,19 +1,7 @@
 import express from "express";
 import { User } from "../models/User.js";
-import  multer  from "multer";
 
 const router = express.Router();
-
-let storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-    cb(null, 'public/uploads')
-    },
-    filename: function (req, file, cb) {
-    cb(null, Date.now() + "_" + file.originalname)
-    }
-})
-
-let upload = multer({storage: storage});
 
 //Servicio GET /Users
 router.get('/', (req, res) => {
@@ -34,14 +22,14 @@ router.get('/:id', (req, res) => {
 });
 
 //Servicio POST /Users
-router.post('/', upload.single('imagen'), (req, res) => {
+router.post('/', (req, res) => {
     let nuevoUser = new User({
         email: req.body.email,
         password: req.body.password,
         name: req.body.name,
         surname: req.body.surname,
         birthdate: req.body.birthdate,
-        avatar: req.file.filename,
+        avatar: req.body.avatar,
         username: req.body.username,
         phone: req.body.phone,
         creationdate: req.body.creationdate,

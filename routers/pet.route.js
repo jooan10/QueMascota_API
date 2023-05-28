@@ -1,19 +1,7 @@
 import express from "express";
 import { Pet } from "../models/Pet.js";
-import  multer  from "multer";
 
 const router = express.Router();
-
-let storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-    cb(null, 'public/uploads')
-    },
-    filename: function (req, file, cb) {
-    cb(null, Date.now() + "_" + file.originalname)
-    }
-})
-
-let upload = multer({storage: storage});
 
 //Servicio GET /Pets
 router.get('/', (req, res) => {
@@ -34,7 +22,7 @@ router.get('/:id', (req, res) => {
 });
 
 //Servicio POST /Pets
-router.post('/', upload.single('imagen'), (req, res) => {
+router.post('/', (req, res) => {
     let nuevoPet = new Pet({
         type: req.body.type,
         name: req.body.name,
@@ -43,7 +31,7 @@ router.post('/', upload.single('imagen'), (req, res) => {
         creationdate: req.body.creationdate,
         lastupdatedate: req.body.lastupdatedate,
         description: req.body.description,
-        images: req.file.filename
+        images: req.body.images
     })
 
     nuevoPet.save().then(resultado => {
