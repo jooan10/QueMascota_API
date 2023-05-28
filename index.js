@@ -7,8 +7,7 @@ import authRouter from './routers/auth.route.js';
 const app = express();
 
 app.use(express.json());
-app.use(bodyParser.urlencoded());
-
+app.use(express.urlencoded());
 
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
