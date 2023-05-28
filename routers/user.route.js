@@ -1,10 +1,22 @@
 import express from "express";
 import { User } from "../models/User.js";
+import { Multer } from "multer";
 
 const router = express.Router();
 
+let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, 'public/uploads')
+    },
+    filename: function (req, file, cb) {
+    cb(null, Date.now() + "_" + file.originalname)
+    }
+})
+
+let upload = multer({storage: storage});
+
 //Servicio GET /Users
-router.get('/user/', (req, res) => {
+router.get('/', (req, res) => {
     User.find().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
        }).catch(error => {
@@ -13,7 +25,7 @@ router.get('/user/', (req, res) => {
 });
 
 //Sercicio GET /Users/:id
-router.get('/user/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     User.findById(req.params['id']).then(resultado=>{
         res.status(200).send({ok:true,resultado:resultado});
     }).catch(error=>{
@@ -22,14 +34,14 @@ router.get('/user/:id', (req, res) => {
 });
 
 //Servicio POST /Users
-router.post('/user/', (req, res) => {
+router.post('/', upload.single('imagen'), (req, res) => {
     let nuevoUser = new User({
         email: req.body.email,
         password: req.body.password,
         name: req.body.name,
         surname: req.body.surname,
         birthdate: req.body.birthdate,
-        avatar: req.body.avatar,
+        avatar: req.file.filename,
         username: req.body.username,
         phone: req.body.phone,
         creationdate: req.body.creationdate,
@@ -46,7 +58,7 @@ router.post('/user/', (req, res) => {
 });
 
 // Servicio PUT /Users/id
-router.put('/user/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     let UserModificado ={
         email: req.body.email,
         password: req.body.password,
@@ -69,7 +81,7 @@ router.put('/user/:id', (req, res) => {
 });
 
 //Servicio DELETE
-router.delete('/user/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     User.findByIdAndRemove(req.params['id'])
         .then(resultado => {
             if (resultado)
