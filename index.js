@@ -2,7 +2,7 @@ import "dotenv/config";
 import "./database/connectdb.js";
 
 import express from "express";
-import authRouter from './routers/auth.route.js';
+import authRouter from './routers/user.route.js';
 
 const app = express();
 
