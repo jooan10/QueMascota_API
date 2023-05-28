@@ -1,5 +1,3 @@
-//Enrutador que contiene los servicios que llama el servidor.
-
 import express from "express";
 import { User } from "../models/User.js";
 
@@ -26,13 +24,18 @@ router.get('/:id', (req, res) => {
 //Servicio POST /Users
 router.post('/', (req, res) => {
     let nuevoUser = new User({
-        nombre: req.body.nombre,
-        descripcion: req.body.descripcion,
-        edad: req.body.edad,
-        jugadores: req.body.jugadores,
-        tipo: req.body.tipo,
-        precio: req.body.precio,
-        imagen: req.body.imagen
+        email: req.body.email,
+        password: req.body.password,
+        name: req.body.name,
+        surname: req.body.surname,
+        birthdate: req.body.birthdate,
+        avatar: req.body.avatar,
+        username: req.body.username,
+        phone: req.body.phone,
+        creationdate: req.body.creationdate,
+        lastupdatedate: req.body.lastupdatedate,
+        lat: req.body.lat,
+        long: req.body.long
     })
 
     nuevoUser.save().then(resultado => {
@@ -45,35 +48,23 @@ router.post('/', (req, res) => {
 // Servicio PUT /Users/id
 router.put('/:id', (req, res) => {
     let UserModificado ={
-        nombre : req.body.nombre,
-        descripcion : req.body.descripcion,
-        edad : req.body.edad,
-        numero : req.body.numero,
-        tipo : req.body.tipo,
-        precio : req.body.precio,
-        imagen:req.body.imagen
+        email: req.body.email,
+        password: req.body.password,
+        name: req.body.name,
+        surname: req.body.surname,
+        birthdate: req.body.birthdate,
+        avatar: req.body.avatar,
+        username: req.body.username,
+        phone: req.body.phone,
+        creationdate: req.body.creationdate,
+        lastupdatedate: req.body.lastupdatedate,
+        lat: req.body.lat,
+        long: req.body.long
     }
     User.findByIdAndUpdate(req.params['id'],UserModificado,{new:true}).then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
     }).catch(error => {
         res.status(400).send({ ok: false, error: "Error modificando User" })
-    });
-});
-
-// Servicio PUT /Users/ediciones/:idUser
-router.put('/ediciones/:idUser', (req, res) => {
-   let edicionModificada={
-    nombreEdicion:req.body.nombreEdicion,
-    anyo:req.body.anyo
-   }
-
-   User.findByIdAndUpdate(req.params['idUser'],{new:true}).then(resultado =>{
-        resultado.ediciones.push(edicionModificada);
-        resultado.save().then(resultado =>{
-            res.status(200).send({ok:true,resultado:resultado});
-        });
-    }).catch(error =>{
-        res.status(400).send({ok:false,error:"Error añadiendo la edición."})
     });
 });
 

@@ -1,10 +1,8 @@
 import express from 'express';
 import { login, register } from '../controllers/auth.controller.js';
-import { body } from 'express-validator'
+import { body } from 'express-validator';
 import { validationResultExpress } from '../middlewares/validationResultExpress.js';
 const router = express.Router();
-
-
 
 router.get('/prueba', (req, res) => {
     res.status(200).send({ ok: true, resultado: "Prueba de actualizacion de repo!!" });
