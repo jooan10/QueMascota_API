@@ -4,7 +4,7 @@ import { Pet } from "../models/Pet.js";
 const router = express.Router();
 
 //Servicio GET /Pets
-router.get('/', (req, res) => {
+router.get('/pet/', (req, res) => {
     Pet.find().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
        }).catch(error => {
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 //Sercicio GET /Pets/:id
-router.get('/:id', (req, res) => {
+router.get('/pet/:id', (req, res) => {
     Pet.findById(req.params['id']).then(resultado=>{
         res.status(200).send({ok:true,resultado:resultado});
     }).catch(error=>{
@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
 });
 
 //Servicio POST /Pets
-router.post('/', (req, res) => {
+router.post('/pet/', (req, res) => {
     let nuevoPet = new Pet({
         type: req.body.type,
         name: req.body.name,
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 });
 
 // Servicio PUT /Pets/id
-router.put('/:id', (req, res) => {
+router.put('/pet/:id', (req, res) => {
     let PetModificado = {
         type: req.body.type,
         name: req.body.name,
@@ -61,7 +61,7 @@ router.put('/:id', (req, res) => {
 });
 
 //Servicio DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/pet/:id', (req, res) => {
     Pet.findByIdAndRemove(req.params['id'])
         .then(resultado => {
             if (resultado)

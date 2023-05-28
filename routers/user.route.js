@@ -4,7 +4,7 @@ import { User } from "../models/User.js";
 const router = express.Router();
 
 //Servicio GET /Users
-router.get('/', (req, res) => {
+router.get('/user/', (req, res) => {
     User.find().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
        }).catch(error => {
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 //Sercicio GET /Users/:id
-router.get('/:id', (req, res) => {
+router.get('/user/:id', (req, res) => {
     User.findById(req.params['id']).then(resultado=>{
         res.status(200).send({ok:true,resultado:resultado});
     }).catch(error=>{
@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
 });
 
 //Servicio POST /Users
-router.post('/', (req, res) => {
+router.post('/user/', (req, res) => {
     let nuevoUser = new User({
         email: req.body.email,
         password: req.body.password,
@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
 });
 
 // Servicio PUT /Users/id
-router.put('/:id', (req, res) => {
+router.put('/user/:id', (req, res) => {
     let UserModificado ={
         email: req.body.email,
         password: req.body.password,
@@ -69,7 +69,7 @@ router.put('/:id', (req, res) => {
 });
 
 //Servicio DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/user/:id', (req, res) => {
     User.findByIdAndRemove(req.params['id'])
         .then(resultado => {
             if (resultado)
