@@ -5,9 +5,18 @@ import express from "express";
 import authRouter from './routers/auth.route.js';
 
 const app = express();
-let prueba='prueba';
 
 app.use(express.json());
+app.use(bodyParser.urlencoded());
+
+
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      let method = req.body._method;
+      delete req.body._method;
+      return method;
+    } 
+}));
 
 app.use('/api/v1/auth',authRouter);
 
