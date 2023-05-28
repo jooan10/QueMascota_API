@@ -5,7 +5,7 @@ import { validationResultExpress } from '../middlewares/validationResultExpress.
 const router = express.Router();
 
 router.get('/prueba', (req, res) => {
-    res.status(200).send({ ok: true, resultado: "Prueba de actualizacion de repo!!" });
+    res.status(200).send({ ok: true, resultado: "PORFA FUNCIONA!!" });
 });
 
 router.post("/register",[
@@ -21,7 +21,5 @@ router.post("/login",[
     validationResultExpress,
     login
 );
-
-
 
 export default router;
