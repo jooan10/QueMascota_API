@@ -1,6 +1,6 @@
 import express from "express";
 import { User } from "../models/User.js";
-import { Multer } from "multer";
+import  multer  from "multer";
 
 const router = express.Router();
 

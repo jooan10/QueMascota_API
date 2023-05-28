@@ -1,6 +1,6 @@
 import express from "express";
 import { Pet } from "../models/Pet.js";
-import { Multer } from "multer";
+import  multer  from "multer";
 
 const router = express.Router();
 
