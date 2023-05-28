@@ -7,7 +7,7 @@ import user from './routers/user.route.js';
 import pet from './routers/pet.route.js';
 
 
-const app = express();
+let app = express();
 
 app.use(express.json());
 
