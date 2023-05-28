@@ -1,8 +1,8 @@
-require("dotenv/config");
-require("./database/connectdb.js");
+import "dotenv/config";
+import "./database/connectdb.js";
 
-const express = require("express");
-const authRouter = require('./routers/auth.route.js');
+import express from "express";
+import authRouter from './routers/auth.route.js';
 
 const app = express();
 
