@@ -1,10 +1,23 @@
-import express from "express";
-import { Pet } from "../models/Pet.js";
+const express = require('express');
 
-const router = express.Router();
+let Pet = require(__dirname + '/../models/Pet.js');
+let router = express.Router();
+
+const multer = require('multer');
+
+let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, 'public/uploads')
+    },
+    filename: function (req, file, cb) {
+    cb(null, Date.now() + "_" + file.originalname)
+    }
+})
+
+let upload = multer({storage: storage});
 
 //Servicio GET /Pets
-router.get('/pet/', (req, res) => {
+router.get('/', (req, res) => {
     Pet.find().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
        }).catch(error => {
@@ -13,7 +26,7 @@ router.get('/pet/', (req, res) => {
 });
 
 //Sercicio GET /Pets/:id
-router.get('/pet/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     Pet.findById(req.params['id']).then(resultado=>{
         res.status(200).send({ok:true,resultado:resultado});
     }).catch(error=>{
@@ -22,7 +35,7 @@ router.get('/pet/:id', (req, res) => {
 });
 
 //Servicio POST /Pets
-router.post('/pet/', (req, res) => {
+router.post('/', upload.single('imagen'), (req, res) => {
     let nuevoPet = new Pet({
         type: req.body.type,
         name: req.body.name,
@@ -31,7 +44,7 @@ router.post('/pet/', (req, res) => {
         creationdate: req.body.creationdate,
         lastupdatedate: req.body.lastupdatedate,
         description: req.body.description,
-        images: req.body.images
+        images: req.file.filename
     })
 
     nuevoPet.save().then(resultado => {
@@ -42,7 +55,7 @@ router.post('/pet/', (req, res) => {
 });
 
 // Servicio PUT /Pets/id
-router.put('/pet/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     let PetModificado = {
         type: req.body.type,
         name: req.body.name,
@@ -61,7 +74,7 @@ router.put('/pet/:id', (req, res) => {
 });
 
 //Servicio DELETE
-router.delete('/pet/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     Pet.findByIdAndRemove(req.params['id'])
         .then(resultado => {
             if (resultado)
@@ -73,4 +86,4 @@ router.delete('/pet/:id', (req, res) => {
         })
 });
 
-export default router;
+module.exports = router;

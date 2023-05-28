@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 try {
     await mongoose.connect('mongodb://mymongodb/quemascota', {useNewUrlParser: true});

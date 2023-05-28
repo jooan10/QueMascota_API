@@ -1,4 +1,4 @@
-import { User } from "../models/User.js";
+let User = require(__dirname + '/../models/User.js');
 
 export const register = async (req,res) => {
     const { email, password } = req.body;
