@@ -1,11 +1,9 @@
-const express = require("express");
+import express from 'express';
+import { login, register } from '../controllers/auth.controller.js';
+import { body } from 'express-validator';
+import { validationResultExpress } from '../middlewares/validationResultExpress.js';
 
-const  login = require('../controllers/auth.controller.js');
-const  register = require('../controllers/auth.controller.js');
-const  body  = require('express-validator');
-const  validationResultExpress  = require('../middlewares/validationResultExpress.js');
-
-let router = express.Router();
+const router = express.Router();
 
 router.get('/prueba', (req, res) => {
     res.status(200).send({ ok: true, resultado: "PORFA FUNCIONA!!" });
@@ -26,4 +24,4 @@ router.post("/login",[
 );
 
 
-module.exports = router;
+export default router;

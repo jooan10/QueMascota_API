@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const petSchema = new mongoose.Schema({
   type: {
@@ -129,7 +129,4 @@ const AnimalBreeds = {
     }
 };
 
-
-let Pet = mongoose.model('Pet',petSchema);
-
-module.exports = Pet;
+export const Pet = mongoose.model('Pet',petSchema);
