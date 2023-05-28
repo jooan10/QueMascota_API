@@ -5,6 +5,7 @@ import express from "express";
 import authRouter from './routers/auth.route.js';
 
 const app = express();
+let prueba='prueba';
 
 app.use(express.json());
 
