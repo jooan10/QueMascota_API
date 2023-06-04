@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcryptjs from "bcryptjs";
-import { Pet } from "./Pet";
+import { Pet } from "./Pet.js";
 
 const userSchema = new mongoose.Schema({
     email:{
