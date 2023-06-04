@@ -33,7 +33,7 @@ export const login = async (req, res) => {
             return res.status(403).json({ error: "Contraseña incorrecta" });
         }
             
-        return res.json({ok: "Login"});
+        return res.json({resultado: user});
     } catch (error) {
         console.log(error);
         return res.status(500).json({ error: "Error de servidor" });
