@@ -3,6 +3,11 @@ import mongoose from "mongoose";
 const petSchema = new mongoose.Schema({
   type: {
     type: String,
+    required: true
+  },
+  breed:{
+    type: String,
+    required: true
   },
   name: {
     type: String,
@@ -18,22 +23,12 @@ const petSchema = new mongoose.Schema({
     required: true,
     enum:["Macho", "Hembra"]
   },
-  creationdate:{
-    type: Date,
-    required: true,
-    trim: true,
-},
-  lastupdatedate:{
-      type: Date,
-      required: true,
-      trim: true,
-  },
   description: {
       type: String,
       required: true
     },
   images: {
-      type: String,
+      type: [String],
       required: true
   },
 });
