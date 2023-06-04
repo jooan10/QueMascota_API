@@ -6,10 +6,6 @@ import { User } from "../models/User.js";
 
 const router = express.Router();
 
-router.get('/prueba', (req, res) => {
-    res.status(200).send({ ok: true, resultado: "PORFA FUNCIONA!!" });
-});
-
 router.post('/register', (req, res) => {
     let nuevoUser = new User({
         email: req.body.email,
@@ -30,15 +26,6 @@ router.post('/register', (req, res) => {
         res.status(400).send({ ok: false, error: "Error insertando User"+ error });
     });
 });
-
-/*
-router.post("/register",[
-    body('email','Formato de email incorrecto').trim().isEmail().normalizeEmail(),
-    body('password','Formato de password incorrecto').trim().isLength({min: 8})],
-    validationResultExpress,
-    register
-);
-*/
 
 router.post("/login",[
     body('email','Formato de email incorrecto').trim().isEmail().normalizeEmail(),
