@@ -27,7 +27,7 @@ router.post('/register', (req, res) => {
     nuevoUser.save().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
     }).catch(error => {
-        res.status(400).send({ ok: false, error: "Error insertando User" })
+        res.status(400).send({ ok: false, error: "Error insertando User"+ error });
     });
 });
 
