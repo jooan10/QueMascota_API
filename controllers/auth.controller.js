@@ -42,10 +42,10 @@ export const login = async (req, res) => {
 
         res.set({
             "auth-token": token,
-            "user-id": user[0].id
+            "user-id": user.id
         }).json({
             error: null,
-            data: { token: token, id: user[0].id }
+            data: { token: token, id: user.id }
         });
 
     } catch (error) {
