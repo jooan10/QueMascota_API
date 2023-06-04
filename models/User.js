@@ -51,7 +51,10 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    
+    pets:{
+        type:mongoose.Schema.Types.Object,
+        ref: Pet,
+    }
 });
 
 userSchema.pre("save", async function (next) {
