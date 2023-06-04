@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcryptjs from "bcryptjs";
+import { Pet } from "./Pet";
 
 const userSchema = new mongoose.Schema({
     email:{
@@ -51,7 +52,8 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     pets:{
-        
+        type:mongoose.Schema.Types.Object,
+        ref: Pet,
     }
 });
 
