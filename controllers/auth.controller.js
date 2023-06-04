@@ -38,7 +38,7 @@ export const login = async (req, res) => {
         const token = jwt.sign({
             password: password,
             email: email
-        }, process.env.TOKEN_SECRET);
+        }, "hauiyf8a79834i3nkjd9a8f0389r3iksfkof2380289");
 
         res.set({
             "auth-token": token,
