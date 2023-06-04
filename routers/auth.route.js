@@ -11,7 +11,6 @@ router.get('/prueba', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    res.status(500).send({result:req.body})
 
     let nuevoUser = new User({
         email: req.body.email,
