@@ -11,7 +11,6 @@ router.get('/prueba', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-
     let nuevoUser = new User({
         email: req.body.email,
         password: req.body.password,
