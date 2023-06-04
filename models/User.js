@@ -42,16 +42,6 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    creationdate:{
-        type: Date,
-        required: true,
-        trim: true,
-    },
-    lastupdatedate:{
-        type: Date,
-        required: true,
-        trim: true,
-    },
     lat:{
         type: Number,
         required: true,

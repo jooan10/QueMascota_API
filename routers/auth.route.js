@@ -20,8 +20,6 @@ router.post('/register', (req, res) => {
         avatar: req.body.avatar,
         username: req.body.username,
         phone: req.body.phone,
-        creationdate: req.body.creationdate,
-        lastupdatedate: req.body.lastupdatedate,
         lat: req.body.lat,
         long: req.body.long
     })
