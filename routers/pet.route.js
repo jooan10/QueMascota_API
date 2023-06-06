@@ -27,6 +27,7 @@ router.post('/', (req, res) => {
         type: req.body.type,
         name: req.body.name,
         age: req.body.age,
+        breed: req.body.breed,
         gender: req.body.gender,
         description: req.body.description,
         images: req.body.images
@@ -35,7 +36,7 @@ router.post('/', (req, res) => {
     nuevoPet.save().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
     }).catch(error => {
-        res.status(400).send({ ok: false, error: "Error insertando Pet" })
+        res.status(400).send({ ok: false, error: "Error insertando Pet", error})
     });
 });
 
@@ -45,6 +46,7 @@ router.put('/:id', (req, res) => {
         type: req.body.type,
         name: req.body.name,
         age: req.body.age,
+        breed: req.body.breed,
         gender: req.body.gender,
         description: req.body.description,
         images: req.body.images
