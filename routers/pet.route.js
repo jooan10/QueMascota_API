@@ -28,8 +28,6 @@ router.post('/', (req, res) => {
         name: req.body.name,
         age: req.body.age,
         gender: req.body.gender,
-        creationdate: req.body.creationdate,
-        lastupdatedate: req.body.lastupdatedate,
         description: req.body.description,
         images: req.body.images
     })
@@ -48,8 +46,6 @@ router.put('/:id', (req, res) => {
         name: req.body.name,
         age: req.body.age,
         gender: req.body.gender,
-        creationdate: req.body.creationdate,
-        lastupdatedate: req.body.lastupdatedate,
         description: req.body.description,
         images: req.body.images
     }
