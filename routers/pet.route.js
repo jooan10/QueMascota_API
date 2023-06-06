@@ -8,16 +8,16 @@ router.get('/', (req, res) => {
     Pet.find().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
        }).catch(error => {
-       res.status(500).send({ok: false, error: "No se encontraron Pets"});
+       res.status(500).send({ ok: false, error: "No se encontraron mascotas", error });
     });
 });
 
 //Sercicio GET /Pets/:id
 router.get('/:id', (req, res) => {
     Pet.findById(req.params['id']).then(resultado=>{
-        res.status(200).send({ok:true,resultado:resultado});
+        res.status(200).send({ ok:true,resultado:resultado});
     }).catch(error=>{
-        res.status(400).send({ok: false,error: "Pet no encontrado."});
+        res.status(400).send({ ok: false,error: "Mascota no encontrada.", error });
     });
 });
 
@@ -30,13 +30,14 @@ router.post('/', (req, res) => {
         breed: req.body.breed,
         gender: req.body.gender,
         description: req.body.description,
-        images: req.body.images
+        images: req.body.images,
+        owner: req.body.owner
     })
 
     nuevoPet.save().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
     }).catch(error => {
-        res.status(400).send({ ok: false, error: "Error insertando Pet", error})
+        res.status(400).send({ ok: false, error: "Error insertando mascota", error })
     });
 });
 
@@ -49,12 +50,13 @@ router.put('/:id', (req, res) => {
         breed: req.body.breed,
         gender: req.body.gender,
         description: req.body.description,
-        images: req.body.images
+        images: req.body.images,
+        owner: req.body.owner
     }
     Pet.findByIdAndUpdate(req.params['id'],PetModificado,{new:true}).then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
     }).catch(error => {
-        res.status(400).send({ ok: false, error: "Error modificando Pet" })
+        res.status(400).send({ ok: false, error: "Error modificando mascota", error })
     });
 });
 
@@ -65,9 +67,9 @@ router.delete('/:id', (req, res) => {
             if (resultado)
                 res.status(200).send({ ok: true, resultado: resultado });
             else
-                res.status(400).send({ ok: false, error: "Pet no encontrado" });
+                res.status(400).send({ ok: false, error: "Mascota no encontrada", error });
         }).catch(error => {
-            res.status(400).send({ ok: false, error: "Error borrando Pet" });
+            res.status(400).send({ ok: false, error: "Error borrando mascota", error });
         })
 });
 

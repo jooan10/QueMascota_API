@@ -8,16 +8,16 @@ router.get('/', (req, res) => {
     User.find().then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
        }).catch(error => {
-       res.status(500).send({ok: false, error: "No se encontraron Users"});
+       res.status(500).send({ ok: false, error: "No se encontraron usuarios", error });
     });
 });
 
 //Sercicio GET /Users/:id
 router.get('/:id', (req, res) => {
     User.findById(req.params['id']).then(resultado=>{
-        res.status(200).send({ok:true,resultado:resultado});
+        res.status(200).send({ ok:true,resultado:resultado });
     }).catch(error=>{
-        res.status(400).send({ok: false,error: "User no encontrado."});
+        res.status(400).send({ ok: false,error: "Usuario no encontrado.", error });
     });
 });
 
@@ -38,7 +38,7 @@ router.put('/:id', (req, res) => {
     User.findByIdAndUpdate(req.params['id'],UserModificado,{new:true}).then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
     }).catch(error => {
-        res.status(400).send({ ok: false, error: "Error modificando User" })
+        res.status(400).send({ ok: false, error: "Error modificando usuario", error })
     });
 });
 
@@ -49,9 +49,9 @@ router.delete('/:id', (req, res) => {
             if (resultado)
                 res.status(200).send({ ok: true, resultado: resultado });
             else
-                res.status(400).send({ ok: false, error: "User no encontrado" });
+                res.status(400).send({ ok: false, error: "Usuario no encontrado", error });
         }).catch(error => {
-            res.status(400).send({ ok: false, error: "Error borrando User" });
+            res.status(400).send({ ok: false, error: "Error borrando usuario", error });
         })
 });
 
