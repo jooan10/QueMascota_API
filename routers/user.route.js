@@ -1,10 +1,11 @@
 import express from "express";
 import { User } from "../models/User.js";
+import path from "path";
 
 const router = express.Router();
 
 //Servicio para descargar APK
-const path = require('path');
+
 
 router.get('/download', function(req, res) {
     const rootDir = process.cwd();
