@@ -5,8 +5,8 @@ const router = express.Router();
 
 //Servicio GET /Pets
 router.get('/', (req, res) => {
-    Pet.find().then(resultado => {
-        res.status(200).send({ resultado: resultado });
+    Pet.find().then(mascotas => {
+        res.status(200).send({ mascotas });
        }).catch(error => {
        res.status(500).send({ ok: false, error: "No se encontraron mascotas", error });
     });
