@@ -4,9 +4,14 @@ import { User } from "../models/User.js";
 const router = express.Router();
 
 //Servicio para descargar APK
-router.get('/download',function (req,res){
-    res.download(__dirname+'/downloads/QueMascota.apk',)
+const path = require('path');
+
+router.get('/download', function(req, res) {
+    const rootDir = process.cwd();
+    const filePath = path.join(rootDir, 'downloads', 'QueMascota.apk');
+    res.download(filePath);
 });
+
 
 //Servicio GET /Users
 router.get('/', (req, res) => {
