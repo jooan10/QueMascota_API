@@ -6,7 +6,7 @@ const router = express.Router();
 //Servicio GET /Pets
 router.get('/', (req, res) => {
     Pet.find().then(resultado => {
-        res.status(200).send({ ok: true, resultado: resultado });
+        res.status(200).send({ resultado: resultado });
        }).catch(error => {
        res.status(500).send({ ok: false, error: "No se encontraron mascotas", error });
     });
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 //Sercicio GET /Pets/:id
 router.get('/:id', (req, res) => {
     Pet.findById(req.params['id']).then(resultado=>{
-        res.status(200).send({ ok:true,resultado:resultado});
+        res.status(200).send({ ok:true, resultado:resultado});
     }).catch(error=>{
         res.status(400).send({ ok: false,error: "Mascota no encontrada.", error });
     });
