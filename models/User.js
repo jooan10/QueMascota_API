@@ -54,6 +54,9 @@ const userSchema = new mongoose.Schema({
     pets:{
         type:mongoose.Schema.Types.Object,
         ref: Pet,
+    },
+    likes:{
+        type:[String]
     }
 });
 
