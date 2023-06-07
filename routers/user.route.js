@@ -5,10 +5,16 @@ const router = express.Router();
 
 //Servicio para descargar APK
 router.get('/download', function(req, res) {
-    const rootDir = process.cwd();
-    const filePath = rootDir + '/downloads/QueMascota.apk';
-    res.download(filePath);
-});
+    try {
+      const rootDir = process.cwd();
+      const filePath = rootDir + '/apk/QueMascota.apk';
+      res.download(filePath);
+    } catch (error) {
+      console.error('Error en la descarga del archivo:', error);
+      res.status(500).send('Error en la descarga del archivo');
+    }
+  });
+  
 
 //Servicio GET /Users
 router.get('/', (req, res) => {
