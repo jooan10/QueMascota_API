@@ -1,18 +1,14 @@
 import express from "express";
 import { User } from "../models/User.js";
-import path from "path";
 
 const router = express.Router();
 
 //Servicio para descargar APK
-
-
 router.get('/download', function(req, res) {
     const rootDir = process.cwd();
-    const filePath = path.join(rootDir, 'downloads', 'QueMascota.apk');
+    const filePath = rootDir + '/downloads/QueMascota.apk';
     res.download(filePath);
 });
-
 
 //Servicio GET /Users
 router.get('/', (req, res) => {
