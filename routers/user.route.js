@@ -1,12 +1,22 @@
 import express from "express";
 import { User } from "../models/User.js";
-
+import path from "path";
 
 const router = express.Router();
-
+const apkFilePath = './downloads/QueMascota.apk';
 
 //Servicio para descargar APK
-
+router.get('/download', (req, res) => {
+    // Obtener el nombre del archivo
+    const fileName = path.basename(apkFilePath);
+  
+    // Establecer las cabeceras de respuesta para la descarga
+    res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
+    res.setHeader('Content-type', 'application/vnd.android.package-archive');
+    
+    // Redirigir al archivo APK
+    res.redirect(apkFilePath);
+  });
 
 //Servicio GET /Users
 router.get('/', (req, res) => {
