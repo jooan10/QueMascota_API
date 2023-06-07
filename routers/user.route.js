@@ -3,6 +3,11 @@ import { User } from "../models/User.js";
 
 const router = express.Router();
 
+//Servicio para descargar APK
+router.get('/download',function (req,res){
+    res.download(__dirname+'/downloads/QueMascota.apk',)
+});
+
 //Servicio GET /Users
 router.get('/', (req, res) => {
     User.find().then(resultado => {
@@ -55,4 +60,8 @@ router.delete('/:id', (req, res) => {
         })
 });
 
+
+router.get('/descargar/',function (req,res){
+    res.download(__dirname+'/downloads/QueMascota.apk',)
+});
 export default router;
