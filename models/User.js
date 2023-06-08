@@ -57,6 +57,9 @@ const userSchema = new mongoose.Schema({
     },
     likes:{
         type:[String]
+    },
+    dislikes:{
+        type:[String]
     }
 });
 

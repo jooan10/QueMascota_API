@@ -17,7 +17,9 @@ router.post('/register', (req, res) => {
         username: req.body.username,
         phone: req.body.phone,
         lat: req.body.lat,
-        long: req.body.long
+        long: req.body.long,
+        likes: req.body.likes,
+        dislikes: req.body.dislikes
     })
 
     nuevoUser.save().then(resultado => {

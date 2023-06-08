@@ -13,8 +13,7 @@ router.get('/download', function(req, res) {
       console.error('Error en la descarga del archivo:', error);
       res.status(500).send('Error en la descarga del archivo');
     }
-  });
-  
+});
 
 //Servicio GET /Users
 router.get('/', (req, res) => {
@@ -46,7 +45,9 @@ router.put('/:id', (req, res) => {
         username: req.body.username,
         phone: req.body.phone,
         lat: req.body.lat,
-        long: req.body.long
+        long: req.body.long,
+        likes: req.body.likes,
+        dislikes: req.body.dislikes
     }
     User.findByIdAndUpdate(req.params['id'],UserModificado,{new:true}).then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
@@ -67,9 +68,3 @@ router.delete('/:id', (req, res) => {
             res.status(400).send({ ok: false, error: "Error borrando usuario", error });
         })
 });
-
-
-router.get('/descargar/',function (req,res){
-    res.download(__dirname+'/downloads/QueMascota.apk',)
-});
-export default router;
