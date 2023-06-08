@@ -14,6 +14,7 @@ router.get('/download', function(req, res) {
       res.status(500).send('Error en la descarga del archivo');
     }
 });
+  
 
 //Servicio GET /Users
 router.get('/', (req, res) => {
@@ -68,3 +69,5 @@ router.delete('/:id', (req, res) => {
             res.status(400).send({ ok: false, error: "Error borrando usuario", error });
         })
 });
+
+export default router
