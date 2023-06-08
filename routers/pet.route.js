@@ -30,7 +30,8 @@ router.post('/', (req, res) => {
         breed: req.body.breed,
         gender: req.body.gender,
         description: req.body.description,
-        images: req.body.images
+        images: req.body.images,
+        owner: req.body.owner
     })
 
     nuevoPet.save().then(resultado => {
@@ -49,8 +50,7 @@ router.put('/:id', (req, res) => {
         breed: req.body.breed,
         gender: req.body.gender,
         description: req.body.description,
-        images: req.body.images,
-        owner: req.body.owner
+        images: req.body.images
     }
     Pet.findByIdAndUpdate(req.params['id'],PetModificado,{new:true}).then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
