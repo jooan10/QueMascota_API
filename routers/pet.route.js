@@ -30,8 +30,7 @@ router.post('/', (req, res) => {
         breed: req.body.breed,
         gender: req.body.gender,
         description: req.body.description,
-        images: req.body.images,
-        owner: req.body.owner
+        images: req.body.images
     })
 
     nuevoPet.save().then(resultado => {

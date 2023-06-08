@@ -37,18 +37,12 @@ router.get('/:id', (req, res) => {
 // Servicio PUT /Users/id
 router.put('/:id', (req, res) => {
     let UserModificado ={
-        email: req.body.email,
-        password: req.body.password,
         name: req.body.name,
         surname: req.body.surname,
         birthdate: req.body.birthdate,
         avatar: req.body.avatar,
         username: req.body.username,
-        phone: req.body.phone,
-        lat: req.body.lat,
-        long: req.body.long,
-        likes: req.body.likes,
-        dislikes: req.body.dislikes
+        phone: req.body.phone
     }
     User.findByIdAndUpdate(req.params['id'],UserModificado,{new:true}).then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });
