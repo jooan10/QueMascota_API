@@ -42,7 +42,8 @@ router.put('/:id', (req, res) => {
         birthdate: req.body.birthdate,
         avatar: req.body.avatar,
         username: req.body.username,
-        phone: req.body.phone
+        phone: req.body.phone,
+        pets: req.body.pets
     }
     User.findByIdAndUpdate(req.params['id'],UserModificado,{new:true}).then(resultado => {
         res.status(200).send({ ok: true, resultado: resultado });

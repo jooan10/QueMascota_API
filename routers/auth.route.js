@@ -19,7 +19,8 @@ router.post('/register', (req, res) => {
         lat: req.body.lat,
         long: req.body.long,
         likes: req.body.likes,
-        dislikes: req.body.dislikes
+        dislikes: req.body.dislikes,
+        pets: req.body.pets
     })
 
     nuevoUser.save().then(resultado => {
