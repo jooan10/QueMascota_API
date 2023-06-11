@@ -1,4 +1,3 @@
-import "dotenv/config";
 import "./database/connectdb.js";
 
 import express from "express";
@@ -17,5 +16,5 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', users);
 app.use('/api/v1/pets', pets);
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 app.listen(PORT, () => console.log("📡📡📡 http://localhost:" + PORT));

@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
         unique: true,
     },
     phone:{
-        type: Number,
+        type: String,
         required: true,
     },
     lat:{
@@ -87,4 +87,4 @@ userSchema.methods.comparePassword = async function (canditatePassword) {
 };
 
 
-export const User = mongoose.model('User',userSchema)
+export const User = mongoose.model('User', userSchema)

@@ -13,9 +13,9 @@ export const register = async (req,res) => {
     }catch(error){
         console.log(error);
         if (error.code === 11000) {
-            return res.status(400).json({ error: "Ya existe este usuario" });
+            return res.status(400).json({ error: "Ya existe este usuario", error });
         }
-        return res.status(500).json({ error: "Error de servidor" });
+        return res.status(500).json({ error: "Error de servidor" , error });
     }
 }
 
@@ -26,13 +26,13 @@ export const login = async (req, res) => {
         let user = await User.findOne({ email });
         if (!user)
         {
-            return res.status(403).json({ error: "No existe este usuario" });
+            return res.status(403).json({ error: "No existe este usuario", error });
         }
 
         const respuestaPassword = await user.comparePassword(password);
         if (!respuestaPassword)
         {
-            return res.status(403).json({ error: "Contraseña incorrecta" });
+            return res.status(403).json({ error: "Contraseña incorrecta", error });
         }
             
         const token = jwt.sign({
@@ -50,6 +50,6 @@ export const login = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ error: "Error de servidor" });
+        return res.status(500).json({ error: "Error de servidor", error });
     }
 };
