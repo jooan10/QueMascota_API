@@ -18,8 +18,8 @@ router.get('/download', function(req, res) {
 
 //Servicio GET /Users
 router.get('/', (req, res) => {
-    User.find().then(resultado => {
-        res.status(200).send({ ok: true, resultado: resultado });
+    User.find().then(usuarios => {
+        res.status(200).send({usuarios});
        }).catch(error => {
        res.status(500).send({ ok: false, error: "No se encontraron usuarios", error });
     });
